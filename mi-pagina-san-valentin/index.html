@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi San Valentín?</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Roboto:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffdde1;
+            overflow: hidden;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff4f81;
+            font-size: 24px;
+            opacity: 0.8;
+            animation: float 5s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-600px); opacity: 0; }
+        }
+
+        .container {
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+        }
+
+        .profile-img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 32px;
+            color: #ff4f81;
+            margin-top: 20px;
+        }
+
+        h2 {
+            font-size: 22px;
+            color: #a81d66;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #ff4f81;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            margin: 5px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff2e62;
+            transform: scale(1.1);
+        }
+
+        #noBtn {
+            position: absolute;
+        }
+
+    </style>
+</head>
+<body>
+
+    <script>
+        function createHearts() {
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement("div");
+                heart.innerHTML = "❤️";
+                heart.classList.add("heart");
+                document.body.appendChild(heart);
+
+                let randomX = Math.random() * window.innerWidth;
+                let randomDelay = Math.random() * 5;
+                let randomDuration = 3 + Math.random() * 3;
+
+                heart.style.left = randomX + "px";
+                heart.style.animationDelay = randomDelay + "s";
+                heart.style.animationDuration = randomDuration + "s";
+
+                setTimeout(() => {
+                    heart.remove();
+                }, randomDuration * 1000);
+            }
+        }
+        setInterval(createHearts, 1000);
+    </script>
+
+    <div class="container">
+        <h2>Para mi amorcito Pamela Hermida ❤️‍🩹</h2>
+        <h1>¿Quieres ser mi San Valentín? 💕</h1>
+        <img src="imagen.jpg" alt="Foto" class="profile-img">
+        <div class="buttons">
+            <button onclick="sayYes()">Sí 💘</button>
+            <button id="noBtn" onmouseover="moveNoButton()">No 😢</button>
+        </div>
+    </div>
+
+    <script>
+        function sayYes() {
+            alert("¡Sabía que dirías que sí! 💖");
+            document.querySelector("h1").innerHTML = "¡Eres mi San Valentín, mi amor! 😍";
+        }
+
+        function moveNoButton() {
+            let btn = document.getElementById("noBtn");
+            let x = Math.random() * (window.innerWidth - btn.clientWidth);
+            let y = Math.random() * (window.innerHeight - btn.clientHeight);
+            btn.style.left = x + "px";
+            btn.style.top = y + "px";
+        }
+    </script>
+
+</body>
+</html>
